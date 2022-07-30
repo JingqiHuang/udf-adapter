@@ -68,7 +68,7 @@ func (pfcpServer *PfcpServer) Listen() error {
 
 	addr := &net.UDPAddr{
 		IP:   serverIp,
-		Port: 8806,//PFCP_PORT,
+		Port: PFCP_PORT,
 	}
 
 	conn, err := net.ListenUDP("udp", addr)
