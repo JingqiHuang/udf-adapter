@@ -1,0 +1,21 @@
+# Copyright 2019 Communication Service/Software Laboratory, National Chiao Tung University (free5gc.org)
+#
+# SPDX-License-Identifier: Apache-2.0
+
+kind: pipeline
+name: development
+
+steps:
+  - name: Check coding style
+    pull: never
+    image: drone/base:golangci-lint
+    depends_on: [ clone ]
+    commands:
+      - golangci-lint run ./...
+
+  - name: Unit test and build
+    pull: never
+    image: drone/base:gotest
+    depends_on: [ clone ]
+    commands:
+      - gotestsum ./... -v -cover -race
